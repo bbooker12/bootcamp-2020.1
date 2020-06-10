@@ -1,0 +1,73 @@
+#include <iostream>
+using namespace std;
+void is_palindrome(string);
+void make_palindrome(int, string, string);
+
+int main() {
+	cout << "hey" << endl;
+	string s = "ababad";
+
+	cout << s << endl;
+
+	is_palindrome(s);
+	cout << "reached main" << endl;
+	return 0;
+}
+void is_palindrome(string st){
+	string Str_Original;
+	string Str_reverse;
+	int i;
+
+
+	for(i = 0; i  < st.size(); i++){
+		Str_Original = st[i];
+		cout << Str_Original << ' ';
+
+
+	}
+	for(int j=st.size(); j>=0; j--){
+		Str_reverse=st[j];
+		cout << Str_reverse << ' ';
+	}
+	if(Str_Original==Str_reverse){
+		cout << "123";
+		cout << Str_Original;
+	}else{
+		cout << "should go to make_palindrome   ";
+		cout << st.size() << "   ";
+		make_palindrome(st.size(), Str_Original, Str_reverse);
+
+	}
+
+}
+void make_palindrome(int sz, string SO, string SR){
+	int siZe= sz;
+	string SO_after;
+	string SR_after;
+	cout << "hello";
+	sz -= 1;
+
+	cout << "    " << sz;
+
+	if(SO==SR){
+		cout << SO;
+	}else{
+		sz -= 1;
+		for (int i = 0; i < sz;i++) {
+			SO_after = SO[i];
+			cout << SO_after << ' ';
+		}
+		for (int i = sz; i > 0; i--) {
+			SR_after = SR[i];
+			cout << SR_after << ' ';
+		}
+		if (SO_after == SR_after) {
+			cout << SO_after;
+		}
+		else {
+			cout << "made it to recursion";
+			make_palindrome(sz, SO_after, SR_after);
+		}
+		
+	}
+}
