@@ -1,0 +1,112 @@
+#include <iostream>
+
+using namespace std;
+
+struct Node{
+	int num;
+	Node * next;
+};
+class Linked_List{
+	
+	public:
+	int sum;
+	Node * before, * end;
+	Linked_List();
+	void insert(int);
+	int add();
+	void sum_LL(int, Linked_List);
+	void sum_insert(int, int, int);
+	void print(Node *);
+};
+
+Linked_List :: Linked_List(){
+	before = NULL;
+	end = NULL;
+}
+void Linked_List::insert(int n){
+	Node *temp = new Node;
+	temp -> num = n;
+	temp -> next = NULL;
+		if(before ==NULL){
+			before = temp;
+			end = temp;
+		}else{
+			end->next =temp;
+			end = end->next;
+		}
+      
+}
+void Linked_List::sum_insert(int f, int s, int z){
+	Node*temp = new Node;
+	temp-> num = f;
+	before = temp;
+	end = temp;
+	temp-> next = new Node;
+	temp->num = s;
+	end -> next = temp;
+	end =temp;
+	temp-> next = new Node;
+	temp-> num = 0;
+	end -> next = temp;
+	end =temp;
+	temp-> next = new Node;
+	temp->num = z;
+	end-> next = temp;
+	end=temp;
+	//print(temp);
+
+}
+int Linked_List::add(){
+	Node * temp;
+	
+	while(temp != NULL){
+		
+		temp =before;
+		sum+=temp->num;
+		cout << sum << ' ';
+		temp=temp->next; 
+	}
+	return sum;
+}
+void sum_LL(int sum, Linked_List obj){
+	int summation =0;
+	int first = sum%10;
+	int second = sum-10;
+	summation = first + second;
+	obj.sum_insert(first, second, summation);
+}
+void Linked_List::print(Node * temp){
+	 temp = before;
+
+    cout << temp->num << endl;
+}
+int main() {
+  int number, s1, s2;
+	Linked_List l;
+	Linked_List l2;
+	Linked_List l3;
+	Node *tmp;
+	
+	for(int i =1; i<=3; i++){
+		cout << "Enter Number " << i << ':' <<  endl;
+		cin >> number; 
+		l.insert(number);
+	}
+	for(int i = 1; i <=3; i++){
+		cout << "Enter Number " << i << ':' << endl;
+		cin >> number;
+		l2.insert(number);
+	}
+	while(tmp!= NULL){
+		l.print(tmp);
+        tmp = tmp->next;
+	}
+//	l.print();
+	s1=l.add();
+	s2=l2.add();
+	cout << s1 <<" " << s2 << endl;
+
+	//l.sum_LL(s1, l3);
+	
+	
+}
